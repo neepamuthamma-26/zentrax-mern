@@ -48,8 +48,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           {/* Public */}
-          <Route path="/"      element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/"       element={<LandingPage />} />
+          <Route path="/landing" element={<LandingPage />} />
+          <Route path="/login"  element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
           {/* Dashboard shortcut — redirects by role */}

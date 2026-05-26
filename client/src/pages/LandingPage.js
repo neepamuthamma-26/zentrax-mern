@@ -28,9 +28,14 @@ export default function LandingPage() {
       {/* Nav */}
       <nav style={{ padding:"1.25rem 2rem", display:"flex", justifyContent:"space-between", alignItems:"center", borderBottom:"1px solid rgba(201,168,76,0.1)" }}>
         <span style={{ fontFamily:"Montserrat,sans-serif", fontWeight:800, letterSpacing:"0.2em", color:"#c9a84c", fontSize:"1.1rem" }}>ZENTRAX</span>
-        <Link to="/login" style={{ padding:"0.55rem 1.4rem", background:"#c9a84c", color:"#0a0a0a", fontFamily:"Montserrat,sans-serif", fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
-          Client Login
-        </Link>
+        <div style={{ display:"flex", gap:"0.8rem" }}>
+          <Link to="/login" style={{ padding:"0.55rem 1.4rem", background:"#c9a84c", color:"#0a0a0a", fontFamily:"Montserrat,sans-serif", fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
+            Login
+          </Link>
+          <Link to="/signup" style={{ padding:"0.55rem 1.4rem", border:"1px solid #c9a84c", color:"#f0ece4", fontFamily:"Montserrat,sans-serif", fontSize:"0.62rem", fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
+            Signup
+          </Link>
+        </div>
       </nav>
 
       {/* Hero */}
@@ -41,9 +46,14 @@ export default function LandingPage() {
         <p style={{ color:"#888", maxWidth:520, margin:"0 auto 2.5rem", lineHeight:1.7, fontSize:"1rem" }}>
           Premium construction and architecture services tailored to your vision. Track every milestone in real time.
         </p>
-        <Link to="/login" style={{ padding:"0.9rem 2.5rem", background:"#c9a84c", color:"#0a0a0a", fontFamily:"Montserrat,sans-serif", fontWeight:700, fontSize:"0.68rem", letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
-          Access Your Project Portal
-        </Link>
+        <div style={{ display:"inline-flex", gap:"1rem", flexWrap:"wrap", justifyContent:"center" }}>
+          <Link to="/login" style={{ padding:"0.9rem 2.2rem", background:"#c9a84c", color:"#0a0a0a", fontFamily:"Montserrat,sans-serif", fontWeight:700, fontSize:"0.68rem", letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
+            Login
+          </Link>
+          <Link to="/signup" style={{ padding:"0.9rem 2.2rem", border:"1px solid rgba(201,168,76,0.6)", color:"#f0ece4", fontFamily:"Montserrat,sans-serif", fontWeight:700, fontSize:"0.68rem", letterSpacing:"0.2em", textTransform:"uppercase", textDecoration:"none" }}>
+            Signup
+          </Link>
+        </div>
       </section>
 
       {/* Contact */}
