@@ -78,4 +78,4 @@ const logout = (_req, res) => {
   res.json({ success: true, message: "Logged out" });
 };
 
-module.exports = { login, logout, me };
+module.exports = { signup, login, logout, me };
