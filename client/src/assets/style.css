@@ -139,6 +139,7 @@ body.loading { overflow: hidden; }
   color: var(--gold) !important;
   padding: 0.5rem 1.2rem !important;
   border-radius: 2px !important;
+  text-decoration: none !important;
   transition: background var(--transition), color var(--transition) !important;
 }
 .nav-cta:hover { background: var(--gold) !important; color: var(--black) !important; }
