@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
+
 function NavbarSection() {
   return (
     <>
@@ -18,7 +21,7 @@ function NavbarSection() {
         <div className="nav-container">
           <a href="#hero" className="nav-logo">
             <div className="nav-logo-bg">
-              <img src="logo.png" alt="Zentrax" />
+              <img src={logo} alt="Zentrax" />
               <div className="nav-brand-text">
                 <span className="nav-brand-name">ZENTRAX</span>
                 <span className="nav-brand-sub">CONSTRUCTION</span>
@@ -47,6 +50,14 @@ function NavbarSection() {
               </a>
             </li>
           </ul>
+          <div style={{ display: "flex", gap: "0.75rem", alignItems: "center" }}>
+            <Link to="/login" className="nav-cta">
+              Login
+            </Link>
+            <Link to="/signup" className="nav-cta">
+              Signup
+            </Link>
+          </div>
           <button className="hamburger" id="hamburger" aria-label="Menu">
             <span></span>
             <span></span>
@@ -60,6 +71,8 @@ function NavbarSection() {
           <a href="#capabilities">Capabilities</a>
           <a href="#properties">Properties</a>
           <a href="#contact">Contact</a>
+          <Link to="/login">Login</Link>
+          <Link to="/signup">Signup</Link>
         </div>
       </nav>
     </>

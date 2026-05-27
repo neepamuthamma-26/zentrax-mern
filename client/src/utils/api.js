@@ -32,7 +32,19 @@ class ApiClient {
    * Handle response and error
    */
   async handleResponse(response) {
-    const data = await response.json();
+    const contentType = response.headers.get("content-type") || "";
+    let data;
+
+    if (contentType.includes("application/json")) {
+      data = await response.json();
+    } else {
+      const text = await response.text();
+      try {
+        data = JSON.parse(text);
+      } catch {
+        data = { success: false, message: text || response.statusText };
+      }
+    }
 
     if (!response.ok) {
       throw new Error(data.message || `HTTP ${response.status}`);

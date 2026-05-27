@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
+
 function HeroSection() {
   return (
     <section id="hero">
@@ -7,7 +10,7 @@ function HeroSection() {
       <div className="hero-content reveal">
         <div className="hero-logo-wrap">
           <div className="hero-logo-bg">
-            <img src="logo.png" alt="Zentrax" className="hero-logo" />
+            <img src={logo} alt="Zentrax" className="hero-logo" />
           </div>
           <div className="hero-brand-name">
             <span className="hero-brand-main">ZENTRAX</span>
@@ -23,12 +26,12 @@ function HeroSection() {
         </h1>
         <p className="hero-desc">Engineering Modern Spaces with Precision &amp; Excellence</p>
         <div className="hero-btns">
-          <a href="#portfolio" className="btn-gold">
-            Explore Projects
-          </a>
-          <a href="#contact" className="btn-outline">
-            Contact Us
-          </a>
+          <Link to="/login" className="btn-gold">
+            Login
+          </Link>
+          <Link to="/signup" className="btn-outline">
+            Signup
+          </Link>
         </div>
       </div>
       <div className="hero-stats">

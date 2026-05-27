@@ -1,3 +1,5 @@
+import logo from "../../assets/logo.png";
+
 function ContactSection() {
   return (
     <section id="contact" className="contact-section section">
@@ -13,7 +15,7 @@ function ContactSection() {
           <div className="contact-info reveal">
             <div className="contact-logo">
               <div className="contact-logo-bg">
-                <img src="logo.png" alt="Zentrax" />
+                <img src={logo} alt="Zentrax" />
               </div>
             </div>
             <div className="cinfo-item">

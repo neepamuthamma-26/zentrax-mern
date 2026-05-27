@@ -1,3 +1,5 @@
+import logo from "../../assets/logo.png";
+
 function FooterSection() {
   return (
     <footer className="footer">
@@ -5,7 +7,7 @@ function FooterSection() {
         <div className="container footer-inner">
           <div className="footer-brand">
             <div className="footer-logo-bg">
-              <img src="logo.png" alt="Zentrax" className="footer-logo" />
+              <img src={logo} alt="Zentrax" className="footer-logo" />
             </div>
             <p>
               Engineering Modern Spaces with Precision &amp; Excellence. Your trusted construction and
