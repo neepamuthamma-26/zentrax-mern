@@ -22,50 +22,50 @@ async function seedDatabase() {
   const Milestone = require("../models/Milestone");
   const bcrypt  = require("bcryptjs");
 
-  const existingAdmin = await User.findOne({ email: "admin@zentrax.com" });
-  if (existingAdmin) return; // Already seeded
+  console.log("🌱 Seeding default users and demo data (upsert mode)...");
 
-  console.log("🌱 Seeding default users and demo data...");
+  async function upsertUser(name, email, password, role) {
+    let u = await User.findOne({ email });
+    if (u) {
+      u.name = name;
+      u.password = password; // plain text -> pre-save hook will hash
+      u.role = role;
+      await u.save();
+      console.log(`🔁 Updated user: ${email}`);
+      return u;
+    }
+    u = await User.create({ name, email, password, role });
+    console.log(`✨ Created user: ${email}`);
+    return u;
+  }
 
-  const salt = await bcrypt.genSalt(10);
+  const admin = await upsertUser("Admin User", "admin@zentrax.com", "admin123", "admin");
+  const manager = await upsertUser("Ravi Kumar", "manager@zentrax.com", "manager123", "manager");
+  const client = await upsertUser("Priya Sharma", "client@zentrax.com", "client123", "client");
 
-  const admin = await User.create({
-    name: "Admin User",
-    email: "admin@zentrax.com",
-    password: await bcrypt.hash("admin123", salt),
-    role: "admin",
-  });
+  // Create a demo project if it doesn't exist
+  let project = await Project.findOne({ title: "Whitefield Villa" });
+  if (!project) {
+    project = await Project.create({
+      title: "Whitefield Villa",
+      description: "4BHK luxury villa construction",
+      location: "Whitefield, Bengaluru",
+      clientId: client._id,
+      managerId: manager._id,
+      status: "ongoing",
+      completion: 65,
+      startDate: new Date("2025-01-15"),
+    });
 
-  const manager = await User.create({
-    name: "Ravi Kumar",
-    email: "manager@zentrax.com",
-    password: await bcrypt.hash("manager123", salt),
-    role: "manager",
-  });
-
-  const client = await User.create({
-    name: "Priya Sharma",
-    email: "client@zentrax.com",
-    password: await bcrypt.hash("client123", salt),
-    role: "client",
-  });
-
-  const project = await Project.create({
-    title: "Whitefield Villa",
-    description: "4BHK luxury villa construction",
-    location: "Whitefield, Bengaluru",
-    clientId: client._id,
-    managerId: manager._id,
-    status: "ongoing",
-    completion: 65,
-    startDate: new Date("2025-01-15"),
-  });
-
-  await Milestone.insertMany([
-    { projectId: project._id, title: "Foundation Completed", completed: true,  date: new Date("2025-02-10") },
-    { projectId: project._id, title: "Plinth Beam Done",     completed: true,  date: new Date("2025-03-05") },
-    { projectId: project._id, title: "Ground Floor Slab",    completed: false, date: new Date("2025-06-01") },
-  ]);
+    await Milestone.insertMany([
+      { projectId: project._id, title: "Foundation Completed", completed: true, date: new Date("2025-02-10") },
+      { projectId: project._id, title: "Plinth Beam Done", completed: true, date: new Date("2025-03-05") },
+      { projectId: project._id, title: "Ground Floor Slab", completed: false, date: new Date("2025-06-01") },
+    ]);
+    console.log("✅ Demo project and milestones created");
+  } else {
+    console.log("ℹ️ Demo project already exists; skipping project creation");
+  }
 
   console.log("✅ Seed complete. Demo credentials:");
   console.log("   admin@zentrax.com   / admin123");

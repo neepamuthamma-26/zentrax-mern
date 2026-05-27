@@ -48,9 +48,17 @@ const login = async (req, res) => {
   }
 
   try {
+    console.log('🔐 Auth login attempt:', email);
     // Include password for comparison (excluded by default via toJSON transform)
     const user = await User.findOne({ email }).select("+password");
-    if (!user || !(await user.matchPassword(password))) {
+    console.log('🔍 User lookup result:', user ? `${user.email} (${user.role})` : 'not found');
+    if (!user) {
+      return res.status(401).json({ success: false, message: "Invalid credentials" });
+    }
+
+    const match = await user.matchPassword(password);
+    console.log('🔑 Password match:', match);
+    if (!match) {
       return res.status(401).json({ success: false, message: "Invalid credentials" });
     }
 

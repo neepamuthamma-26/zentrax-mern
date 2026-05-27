@@ -3,13 +3,14 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
 
 // Pages
-import LandingPage     from "./pages/LandingPage";
-import LoginPage       from "./pages/LoginPage";
-import SignupPage      from "./pages/SignupPage";
-import AdminDashboard  from "./pages/AdminDashboard";
+import Zentrax          from "./components/Zentrax";
+import LandingPage      from "./pages/LandingPage";
+import LoginPage        from "./pages/LoginPage";
+import SignupPage       from "./pages/SignupPage";
+import AdminDashboard   from "./pages/AdminDashboard";
 import ManagerDashboard from "./pages/ManagerDashboard";
-import ClientDashboard from "./pages/ClientDashboard";
-import NotFound        from "./pages/NotFound";
+import ClientDashboard  from "./pages/ClientDashboard";
+import NotFound         from "./pages/NotFound";
 
 // ── Protected Route ───────────────────────────────────────────────────────────
 // Redirects to /login if unauthenticated; redirects wrong-role users to their
@@ -48,8 +49,9 @@ export default function App() {
       <BrowserRouter>
         <Routes>
           {/* Public */}
-          <Route path="/"      element={<LandingPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/"      element={<Zentrax />} />
+          <Route path="/landing" element={<Zentrax />} />
+          <Route path="/login"  element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
 
           {/* Dashboard shortcut — redirects by role */}
